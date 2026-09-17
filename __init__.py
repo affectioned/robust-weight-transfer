@@ -51,7 +51,8 @@ missing_deps = []
 for module in DEPENDENCIES:
     try:
         importlib.import_module(module)
-    except ImportError:
+    except ImportError as e:
+        print(f"Robust Weight Transfer: failed to import {module}: {e}")
         if module == "igl":
             missing_deps.append("libigl>=2.6.0")
         else:
